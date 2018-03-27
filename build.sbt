@@ -4,20 +4,18 @@ lazy val sparkVersion = "2.3.0"
 lazy val root = (project in file(".")).
   settings(
     inThisBuild(List(
-      organization := "meetup",
+      organization := "com.addmeaning.meetup",
       scalaVersion := "2.11.12",
       version := "1.0"
     )),
     name := "k-2-meetup",
     description := "k-2-meetup",
-//    libraryDependencies ++= (sparkDeps ++ deps),
     libraryDependencies  ++= (deps ++ sparkDeps)
   )
 assemblyMergeStrategy in assembly := {
   case PathList("META-INF", _*) => MergeStrategy.discard
   case _ => MergeStrategy.first
 }
-//fullClasspath in Runtime := (fullClasspath in Compile).value
 run in Compile <<= Defaults.runTask(fullClasspath in Compile, mainClass in (Compile, run), runner in (Compile, run))
 
 lazy val deps = Seq(
